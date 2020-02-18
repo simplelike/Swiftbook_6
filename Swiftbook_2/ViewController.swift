@@ -8,7 +8,8 @@
 
 import UIKit
 
-protocol changeColorDelegate {
+protocol ChangeColorDelegate {
+    var colorValue: UIColor { get }
     func changeColor(color: UIColor)
 }
 
@@ -37,8 +38,8 @@ class ViewController: UIViewController {
     private var blueValue: CGFloat!
     private var alphaValue: CGFloat!
     
-    var delegate: changeColorDelegate!
-    var color: UIColor!
+    var delegate: ChangeColorDelegate!
+    //var color: UIColor!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +55,7 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        colorPalette.backgroundColor = color
+        colorPalette.backgroundColor = delegate.colorValue
         customizeSubViews()
     }
     
@@ -98,6 +99,7 @@ class ViewController: UIViewController {
                 greenValueTextField.text = String(format: "%.2f", sliderGreen.value)
                 
                 greenValue = CGFloat(sliderGreen.value)/255
+
             case "blue":
                 blueValueLabel.text = String(format: "%.2f", sliderBlue.value)
                 blueValueTextField.text = String(format: "%.2f", sliderBlue.value)

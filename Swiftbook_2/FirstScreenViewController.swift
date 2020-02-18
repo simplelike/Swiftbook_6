@@ -18,15 +18,20 @@ class FirstScreenViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! ViewController
-        vc.color = color
         vc.delegate = self
     }
 }
 
-extension FirstScreenViewController:changeColorDelegate{
+extension FirstScreenViewController:ChangeColorDelegate{
+   
+    var colorValue: UIColor {
+        get {
+            return self.color
+        }
+    }
+    
     func changeColor(color: UIColor) {
         self.color = color
     }
-    
     
 }
